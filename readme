@@ -1,0 +1,4 @@
+Install Node modules by command >. npm i
+install mongodb and connect it with nodejs server.
+start the server by running app.js using command > npm run start 
+Go to the webbrowser and type url :http://localhost:9500
