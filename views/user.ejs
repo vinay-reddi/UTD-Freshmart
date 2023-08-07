@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    a:link {
+      color: black;
+      text-decoration: none;
+      padding-left: 0%;
+    }
+
+    .navbars {
+
+      margin-left: 25%;
+
+    }
+    .content{
+        padding: auto;
+        padding-top: 12%;
+    }
+    
+  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Login Form</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <!-- Navbar -->
+  
+
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-3"></div>
+        <div class="col-md-5">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">LOGIN HERE</h3>
+            </div>
+
+            <form method="post" action="/verify">
+              <div class="card-body">
+                <font style="color:red">
+                  <%=msg%>
+                </font>
+
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username">
+                </div>
+                <div class="form-group">
+                  <label for="Password">Password</label>
+                  <input type="password" class="form-control" id="Password" placeholder="Enter Password"
+                    name="password">
+                </div>
+                <div class="form-group">
+                  <label for="empid" id="user_type">User_Type</label><br>
+                <select name="users" id="users">
+                  <option value="Customer" selected>Customer</option>
+                  <option value="Vendor">Vendor</option>
+                  <option value="Admin">Admin</option>
+                  
+                </select>
+              </div>
+
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" &emsp>Submit</button>
+                  <a href='registration'> Not signed up yet? click here!</a>
+                  <a href='forgotpass'> Forgot Password</a>
+
+
+                </div>
+
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+        <!-- /.card -->
+
+      </div>
+
+    </div>
+  </section>
+  <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <!-- Control Sidebar -->
+
+  <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- jquery-validation -->
+  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+  <!-- Page specific script -->
+
+</body>
+
+</html>

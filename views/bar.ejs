@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+window.onload = function () {
+const propertyValues = JSON.parse('<%-dailyredeemed%>');
+console.log(propertyValues);
+var a = Object.values(propertyValues)
+
+var res1=[]
+var res2=[]
+for(i=0;i<a.length;i++){
+    res1.push(a[i]._id)
+    res1.push(a[i].tpts)
+}
+console.log(res1)
+console.log(res2)
+
+var dps = [];
+for(var element in propertyValues) {
+    dps.push({label: element, y: propertyValues[element]});
+}
+var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,
+
+    title:{
+        text:"Fortune 500 Companies by Country"
+    },
+    axisX:{
+        interval: 1
+    },
+    axisY2:{
+        interlacedColor: "rgba(1,77,101,.2)",
+        gridColor: "rgba(1,77,101,.1)",
+        title: "Number of Companies"
+    },
+    data: [{
+        type: "bar",
+        name: "companies",
+        axisYType: "secondary",
+        color: "#014D65",
+        dataPoints: [
+            dps
+        ]
+    }]
+});
+chart.render();
+ 
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

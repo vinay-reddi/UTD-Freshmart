@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | General Form Elements</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- Left navbar links -->
+  <ul class="navbar-nav" style="margin-left:25%">
+    
+    
+    <li class="nav-item d-none d-sm-inline-block"> 
+      <%if(vendor=="1"){%>
+      <a href="/vendorhome" class="nav-link">Home</a>
+       
+        <%}else{%>
+      <a href="/adminhome" class="nav-link">Home</a>
+      <%}%>
+    </li>
+    
+  </ul>
+
+  </nav>
+
+    <!-- Main content -->
+    <section class="content" style="padding-top: 3%;padding-left: 32%;">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary" style="width: 600px;">
+              <div class="card-header"style="background-color: #343a40!important;">
+                <h3 class="card-title">PRODUCT FORM</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- <script>
+ 
+                function form(e) {
+                e.preventDefault();
+                console.log("in AJAx");
+                var form=$('#productform')[0];
+                var data = new FormData(form)
+                                
+                var url = "/addproduct"; // the script where you handle the form input.
+                
+                $.ajax({
+                type: "POST",
+                enctype:"multipart/form-data",
+                url: url,
+                data: data, // serializes the form's elements.
+                success: function (data) {
+                
+                if(data.msg == "ID already in use")
+                {
+                document.getElementById("para").innerHTML = data.msg;
+                document.getElementById("productid").value = data.value; 
+                }
+                
+                else {
+                location.assign("/products");
+                }
+                }
+                });
+                
+                return false; // avoid to execute the actual submit of the form.
+                };
+                
+                </script> -->
+              <!-- form start -->
+              <%if(vendor=="1"){%>
+              <form method="POST" action="/vendor_editproduct" enctype="multipart/form-data" id="productform">
+                <%}else{%>
+              <form method="POST" action="/editproduct" enctype="multipart/form-data" id="productform">
+                <%}%>
+                <div class="card-body">
+                  <h5><%=msg%></h5>
+                  <div class="form-group">
+                    <label for="empname">Product Name</label>
+                    <input type="text" class="form-control" id="productname" placeholder="Enter name" name="name" value="<%=product.name%>">
+                  </div>
+                 
+                  <div class="form-group">
+                    <label for="empid">Product  ID</label>
+                    <input type="text" class="form-control" id="productid" placeholder="Enter ID" name="id" value="<%=product.id%>">
+                  </div>
+                  
+                 
+                  <div class="form-group">
+                    <label for="age">Description</label>
+                    <input type="text" class="form-control" id="productdes" placeholder="Enter Description" name="desc" value="<%=product.des%>">
+                  </div>
+                  <div class="form-group">
+                    <label for="points">Points</label>
+                    <input type="number" class="form-control" id="pts" placeholder="Enter Points to redeemed" name="pts" value="<%=product.pts%>">
+                  </div>
+                  <div class="form-group">
+                    <label for="category">Category</label>
+                    <input type="text" class="form-control" id="category" placeholder="Enter Category" name="category" value="<%=product.category%>">
+                  </div>
+                  
+                  <div class="form-group">
+
+                    <label for="exampleInputFile">Product Image</label>
+                    
+                    <div class="input-group">
+                    
+                    <div class="custom-file">
+                    
+                    <input type="file" name="file" class="custom-file-input" id="file" value="<%=product.file[0].originalname%>" multiple>
+                    
+                    <label class="custom-file-label" for="exampleInputFile" ><%=product.file[0].originalname%></label>
+                    
+                    </div>
+                    
+                    <div class="input-group-append">
+                    
+                    <span class="input-group-text">Upload</span>
+                    
+                    </div>
+                    
+                    </div>
+                    
+                  </div<div class="form-group">
+          
+                  <input type="hidden" class="form-control" name="pid" value="<%=product._id%>">
+                  </div>
+                 
+                <div class="card-footer">
+                  <button onclick="form(event)" class="btn btn-primary">Add product</button>
+                </div>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+ 
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
+</body>
+</html>

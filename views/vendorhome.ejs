@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    a:link {
+      color: black;
+      text-decoration: none;
+    }
+  </style>
+ 
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Login Form</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav" style="margin-left:10%">
+        <li class="nav-item d-none d-sm-inline-block">
+          <h6 class="nav-link">USERLOGGED:<%=username1%>
+          </h6>
+        </li>
+
+        <!-- <li class="nav-item d-none d-sm-inline-block">
+          <a href='/userstable' class="nav-link">VIEW USERS</a>
+        </li> -->
+
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href='/vendor_products' class="nav-link">VIEW PRODUCTS</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href='/vendor_productform' class="nav-link">ADD PRODUCT</a>
+        </li>
+
+
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href='/signout' class="nav-link">SIGNOUT</a>
+        </li>
+      </ul>
+
+    </nav>
+    <canvas style="padding-top: 8%;padding: 1%;" id="myChart" width="250px" height="50px"></canvas>
+    <canvas id="myChart" style="width:100%;max-width:300px"></canvas>
+
+<script>
+    const propertyValues = JSON.parse('<%-dailyptsredeemed%>');
+    console.log(propertyValues);
+    var a = Object.values(propertyValues)
+
+    var res1 = []
+    var res2 = []
+    for (i = 0; i < a.length; i++) {
+        res1.push(a[i]._id)
+        res2.push(a[i].tpts)
+    }
+var xValues = res1;
+var yValues = res2;
+var barColors = ["red", "blue","green","orange","black","yellow","gray"];
+
+// new Chart("myChart", {
+//   type: "bar",
+//   data: {
+//     labels: xValues,
+//     datasets: [{
+//       backgroundColor: barColors,
+//       data: yValues
+//     }]
+//   },
+//   options: {
+//     legend: {display: false},
+//     title: {
+//       display: true,
+//       text:"POINTS REDEEMED PER DAY"
+//     }
+//   }
+// });
+</script>
+      
+
+<div class="container">
+  <h1 style="padding-left: 38%;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">RECENTLY SOLD</h1>
+  <div class="row">
+    <% if(purchaseitems.length>0){%>
+      <% for(var i=1;i<=purchaseitems.length;i++){%>
+        <div class="col-3">
+
+          <div class="image">
+            <img src="/uploads/<%=purchaseitems[i-1].file[0].filename%>" class="card-img-top" height="200px"><br><br>
+          </div>
+        </div>
+        <div class="col-9">
+        <div class="text">
+          <h5 class="text">Product Name:<%=purchaseitems[i-1].name%></h5>
+          <h5 id="pts" style="color:green;" class="text">Points Redeemed by user:<%=purchaseitems[i-1].pts%></h5>                  
+          <h5 id="date" class="text">Purchased on:<%=purchaseitems[i-1].date%></h5>
+          <h5>Purchased by:<%=purchaseitems[i-1].userlogged%></h5>
+        </div>
+       
+        
+        </div>               
+        <%}%>
+          
+      <%} else{%>
+            <strong style="font-size:30px;opacity: 0.5; padding-left: 32%; padding-top: 25%;">NO PURCHASE HISTORY</strong>
+            <%}%>
+  </div>
+</div>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- jquery-validation -->
+  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+  <!-- Page specific script -->
+
+</body>
+
+</html>

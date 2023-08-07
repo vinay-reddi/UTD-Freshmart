@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | General Form Elements</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+
+    <script>
+
+      function send1(e) {
+        e.preventDefault();
+        userdetails = {
+
+          "username": document.getElementById("username").value,
+          "email": document.getElementById("email").value,
+          "password": document.getElementById("password").value,
+          "cpassword": document.getElementById("cpassword").value,
+          "user_type": document.getElementById("users").value,
+          "street_id": document.getElementById("streetid").value,
+          "city_id": document.getElementById("cityId").value,
+          "zipcode_id": document.getElementById("zipcodeId").value
+
+        }
+
+        var url = "/register"; // the script where you handle the form input.
+
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: userdetails, // serializes the form's elements.
+          success: function (data) {
+            if (data.msg == "Passwords does not match") {
+              document.getElementById("para").innerHTML = data.msg;
+              document.getElementById("password").value = data.value;
+              document.getElementById("cpassword").value = data.value;
+            }
+            else if (data.msg == "Email already in use") {
+              document.getElementById("para").innerHTML = data.msg;
+              document.getElementById("email").value = data.value;
+            }
+            else if (data.msg == "Already Registered") {
+              document.getElementById("para").innerHTML = data.msg;
+              document.getElementById("username").value = data.value;
+            }
+            else {
+              location.assign("/login");
+            }
+          }
+        });
+
+        return false; // avoid to execute the actual submit of the form.
+      };
+
+
+
+      function ValidateEmail() {
+        let inputText = document.getElementById("email");
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (inputText.value.match(mailformat)) {
+          alert("Valid email address!");
+          document.form1.text1.focus();
+          return true;
+        }
+        else {
+          alert("You have entered an invalid email address!");
+          document.form1.text1.focus();
+          return false;
+        }
+      }
+    </script>
+
+    <!-- Main content -->
+    <section class="content" style="padding-top: 3%;padding-left: 32%;">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary" style="width: 600px;">
+              <div class="card-header" style="background-color: #343a40!important;">
+                <h3 class="card-title">REGISTRATION FORM</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+
+              <form name=form1>
+                <div class="card-body">
+                  <p id="para" style="color: red;"></p>
+
+                  <div class="form-group">
+                    <label for="empname" id="ename">Username</label><br>
+                    <input type="text" class="form-control" name="username" id="username">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="subject" id="empsal">Email</label><br>
+                    <input type="email" class="form-control" name="email" id="email" onchange="ValidateEmail()">
+                  </div>
+                  <div class="form-group">
+                    <label for="empid" id="empid">Password</label><br>
+                    <input type="password" class="form-control" id="password" name="password">
+                  </div>
+                  <div class="form-group">
+                    <label for="empid" id="empid">Confirm Password</label><br>
+                    <input type="password" class="form-control" id="cpassword" name="cpassword">
+                  </div>
+                  <div class="form-group">
+                    <label for="empid" id="street">Street</label><br>
+                    <input type="text" class="form-control" id="streetid" name="streetid">
+                  </div>
+                  <div class="form-group">
+                    <label for="empid" id="city">City</label><br>
+                    <input type="text" class="form-control" id="cityId" name="cityId">
+                  </div>
+                  <div class="form-group">
+                    <label for="empid" id="zcode">Zip Code</label><br>
+                    <input type="text" class="form-control" id="zipcodeId" name="zipcodeId">
+                  </div>
+                  <div class="form-group">
+                    <label for="empid" id="user_type">User_Type</label><br>
+                  <select name="users" id="users">
+                    <option value="Customer" selected>Customer</option>
+                    <option value="Vendor">Vendor</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
+
+                  <div class="card-footer">
+                    <button onclick="send1(event)" class="btn btn-primary">SUBMIT</button>
+                    <a href="/login" class="btn btn-primary">CANCEL</a>
+                  </div>
+
+                  <!-- /.card-body -->
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- /.card -->
+
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+
+      </div>
+    </section>
+
+  </div>
+  <!-- ./wrapper -->
+
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- bs-custom-file-input -->
+  <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+  <!-- Page specific script -->
+  <script>
+    $(function () {
+      bsCustomFileInput.init();
+    });
+  </script>
+</body>
+
+</html>
